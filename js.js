@@ -52,7 +52,7 @@ function playerLost(){
     }, 0);
 }
 // jump fn
-document.addEventListener('keydown', function(event) {
+document.addEventListener('click', function(event) {
     if (speed == 6) {
         jump()
     }
