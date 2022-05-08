@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Game</title>
+</head>
+<body>
+    <div id="playground">
+        <div class="border"></div>
+        <!-- hero -->
+        <div id="level">L e v e l</div>
+        <div id="score"></div>
+        <div id="bang"></div>
+        <div id="hero">
+            <div id="hero__moving" class="hero__moving">
+                <div class="ufo__fire"></div>
+                <div class="ufo"></div>
+            </div>
+        </div>
+        <!-- enemies -->
+        <div id="enemy1" class="enemy1">
+            <div id="fwheeldrive" class="enemy__wheelF wheels__rollingf"></div>
+            <div id="rwheeldrive" class="enemy__wheelR wheels__rollingr"></div>
+        </div>
+        <div class="border2"></div>
+    </div>
+    !<div style="display: flex; justify-content: center;"><button id="playAgain" onClick="window.location.reload();">Play one more time!</button></div>
+    <style>
+        body {
+            background-color: rgb(46, 31, 24);
+        }
+        #playAgain {
+            font-size: 40px;
+            width: 900px;
+            height: 100px;
+            border-radius: 30px;
+            color: #fff;
+            background-color: rgb(0, 73, 49);
+            display: none;
+        }
+        #level {
+            font-size: 40px;
+            color: antiquewhite;
+            position: absolute;
+            width: 200px;
+            height: 50px;
+            top: 50px;
+            left: 200px;
+            background-color: brown;
+        }
+        #score {
+            background-color: rgb(1, 58, 3);
+            font-size: 40px;
+            color: antiquewhite;
+            position: absolute;
+            box-sizing: border-box;
+            height: 50px;
+            top: 110px;
+            left: 200px;
+        }
+        #playground {
+            width: 1200px;
+            height: 400px;
+            margin: 100px auto 10px auto;
+            position: relative;
+            /* moving background */
+            background-position: 100px;
+            background-size: contain;
+            background-image: url(./images/bg.png);
+            animation: bganim 500s linear infinite;
+        }
+        @keyframes bganim {
+            0% {
+                background-position: 100px;
+            }
+            100% {
+                background-position: -50000px;
+            }
+        }
+        .border {
+            width: 150px;
+            height: 400px;
+            position: absolute;
+            background: url(./images/border.png) center/cover;
+            z-index: 10;
+        }
+        .border2 {
+            width: 150px;
+            height: 400px;
+            position: absolute;
+            background: url(./images/border.png) center/cover;
+            right: 0px;
+            z-index: 10;
+        }
+        #bang {
+            display: none;
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            bottom: 10px;
+            left: 93px;
+            background-image: url(./images/bang.gif);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        #hero {
+            bottom: 130px;
+            left: 232px;
+            position: absolute;
+        }
+        .jump {
+            animation: hero-jump 2.25s linear;
+        }
+        .jump1 {
+            animation: hero-jump 1.5s linear;
+        }
+        .jump2 {
+            animation: hero-jump 1s linear;
+        }
+        .jump3 {
+            animation: hero-jump 0.67s linear;
+        }
+        @keyframes hero-jump {
+            0% {
+                bottom: 130px;
+            }
+            25% {
+                bottom: 230px;
+            }
+            50% {
+                bottom: 250px;
+            }
+            75% {
+                bottom: 230px;
+            }
+            100% {
+                bottom: 130px;
+            }
+        }
+        .ufo {
+            background-image: url(./images/ufo.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 200px;
+            height: 100px;
+            
+            position: absolute;
+            /* z-index: 1; */
+        }
+        .ufo__fire {
+            position: absolute;
+            width: 168px;
+            height: 67px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(./images/ufo-fire.png);
+            top: 30px;
+            right: -88px;
+            animation: ufofire 0.15s infinite linear;
+        }
+        @keyframes ufofire {
+            0% {
+                width: 168px;
+            }
+            100% {
+                width: 200px;
+            }
+        }
+        .hero__moving {
+            animation: ufoMove 1s infinite;
+            animation-timing-function: cubic-bezier(.41,-0.01,.56,.99);
+        }
+        @keyframes ufoMove {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .enemy1 {
+            background-image: url(./images/enemy1.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 150px;
+            height: 100px;
+            position: absolute;
+            bottom: -6px;
+            right: 23px;
+            animation: enemy1Move 4s infinite linear;
+        }
+        #fwheeldrive {
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: url(./images/enemy1-wheel.png) center/cover;
+            bottom: 19px;
+            left: 25px;
+            animation: spin 1s linear infinite;
+        }
+        #rwheeldrive {
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: url(./images/enemy1-wheel.png) center/cover;
+            bottom: 19px;
+            right: 27px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 
+            100% {  
+                transform: rotate(-360deg); 
+            } 
+        }
+
+
+        @keyframes enemy1Move {
+        0% {
+            right: -20px;
+        }
+        100% {
+            right: 1050px;
+        }
+        
+        }
+    </style>
+    <script src="./js.js"></script>
+</body>
+</html>
